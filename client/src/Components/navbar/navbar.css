@@ -1,0 +1,56 @@
+.navigation-bar {
+  overflow: hidden;
+  background-color: brown;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.nav-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex-grow: 1;
+}
+.navbutt {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 30px 40px;
+  text-decoration: none;
+} 
+/* 
+.navigation-bar {
+    background-color: rgb(20, 9, 142);
+    width: 120px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navigation-bar:hover {
+    width: 200px;
+    transition: width 0.5s;
+}
+.navigation-bar:not(:hover) {
+  width: 120px;
+  transition: width 0.5s;
+}
+
+
+.navbutt {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: flex;
+    transition: background-color 0.3s, color 0.3s;
+}*/
+
+
+
+.navbutt:hover{
+    background-color: white;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+} 
