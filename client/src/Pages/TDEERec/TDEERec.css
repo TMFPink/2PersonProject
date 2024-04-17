@@ -1,4 +1,8 @@
-/* TDEERec.css */
+.TDEE-container {
+  background-image: url('C:\Users\user\2PersonProject\client\src\Asset\tdee\tdee-background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
 
 .container {
   max-width: 400px;
@@ -16,6 +20,35 @@ h2 {
   text-align: center;
 }
 
+.input-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.input-with-placeholder {
+  position: relative;
+}
+
+.input-with-placeholder input[type="number"]::-webkit-inner-spin-button,
+.input-with-placeholder input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-with-placeholder input {
+  width: calc(100% - 40px); 
+}
+
+.placeholder {
+  position: absolute;
+  top: 50%;
+  right: 10px; 
+  transform: translateY(-50%);
+  color: #555;
+}
+
+
+
 label {
   display: block;
   margin-bottom: 8px;
@@ -25,42 +58,55 @@ label {
 
 input[type="number"],
 select {
-  width: 100%;
+  width: 380px;
   padding: 10px;
-  margin-bottom: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
   color: #333;
 }
 
-input[type="radio"] {
-  margin-right: 5px;
+.radio-group {
+  display: flex;
+  align-items: center;
 }
 
+.radio-group input[type="radio"] {
+  margin-right: 10px;
+}
+
+.gender-label {
+  margin-right: 150px;
+  transform: translateY(20%);
+}
 button {
   display: block;
   width: 100%;
   padding: 12px;
-  background-color: #007bff;
-  color: #fff;
+  background-color: #000000;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 16px;
+  margin-top: 15px;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #D3A121;
 }
 
+#activityLevel{
+  width: 400px;
+}
 .recommendation {
   margin-top: 20px;
   padding: 15px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .recommendation h3 {
@@ -71,7 +117,42 @@ button:hover {
 }
 
 .recommendation p {
-  margin: 0;
+  margin: 0 auto; /* Center the paragraph */
   font-size: 16px;
   color: #555;
+}
+
+
+.error-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  color: #ffffff;
+  text-align: center;
+  z-index: 9999;
+}
+
+.error-popup p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.error-popup button {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.error-popup button:hover {
+  background-color: #ccc;
 }
