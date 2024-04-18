@@ -5,7 +5,8 @@ import member1 from '../../Asset/homepage/nguyentoankhang.jpg'
 import member2 from '../../Asset/homepage/tranminhnguyenhong.jpg'
 import cbum from'../../Asset/homepage/cbum.jpg'
 
-function HomePage() {
+
+function homepage() {
   return (
     <div className="homepage-container">
       <section className="hero-section">
@@ -105,4 +106,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default homepage;
