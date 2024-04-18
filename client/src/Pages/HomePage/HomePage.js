@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './homepage.css'; // You can create a separate CSS file for homepage styles
+import './homepage.css'; 
 import member1 from '../../Asset/homepage/nguyentoankhang.jpg'
 import member2 from '../../Asset/homepage/tranminhnguyenhong.jpg'
 import cbum from'../../Asset/homepage/cbum.jpg'

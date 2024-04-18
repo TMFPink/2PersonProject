@@ -25,8 +25,9 @@ a:hover {
 /* Hero Section */
 .hero-section {
   background-image: url('/Users/nguyenhong/Documents/FymAndGoodProject/client/src/Asset/homepage/healthy.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
-  background-size: cover; 
+  /* background-image: url('C:\Users\user\2PersonProject\client\src\Asset\homepage\healthy.jpg');  */
   background-position: center; 
+  background-size: cover;
   padding: 200px 0;
   text-align: center;
 }
@@ -63,6 +64,7 @@ a:hover {
 
 .cta-button:hover {
   background-color: #D3A121;
+  text-decoration: none
 }
 
 /* Features Section */
@@ -164,8 +166,8 @@ a:hover {
   display: inline-block;
   padding: 12px 24px;
   font-size: 18px;
-  color: #fff;
-  background-color: #007bff;
+  color: #000000;
+  background-color: #FFFFFF;
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -173,13 +175,12 @@ a:hover {
 }
 
 .section-content .cta-button:hover {
-  background-color: #0056b3;
+  background-color: #D3A121;
 }
 
 /* Footer Section */
 .footer-section {
-  background-color: #333;
-  color: #1D1D1D;
+  background-color:  #272728;
   padding: 40px 0;
   text-align: center;
 }
