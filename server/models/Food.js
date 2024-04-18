@@ -1,26 +1,38 @@
 module.exports = (sequelize, DataTypes) => {
     const Food = sequelize.define("Food", {
-        Name:{
+        FoodName: {
             type: DataTypes.STRING,
-            allowNULL: false
+            allowNull: false
         },
-        Protein:{
-            type: DataTypes.DOUBLE,
-            allowNULL: false
+        Calories: {
+            type: DataTypes.FLOAT,
+            allowNull: false
         },
-        Fat:{
-            type: DataTypes.DOUBLE,
-            allowNULL: false
+        Protein: {
+            type: DataTypes.FLOAT,
+            allowNull: false
         },
-        Carb:{
-            type: DataTypes.DOUBLE,
-            allowNULL: false
+        Fat: {
+            type: DataTypes.FLOAT,
+            allowNull: false
+        },
+        Carb: {
+            type: DataTypes.FLOAT,
+            allowNull: false
         },
         Instruction: {
             type: DataTypes.STRING,
-            allowNULL: true
+            allowNull: true
         }
-    })
+    }, {
+        timestamps: false // Exclude timestamps
+    });
+
+    Food.associate = (models) => {
+        Food.hasMany(models.FoodIngredients, {
+            foreignKey: 'FoodID'
+        });
+    };
+
     return Food;
-    
-}
+};
