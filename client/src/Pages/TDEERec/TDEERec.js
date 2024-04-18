@@ -10,11 +10,13 @@ function TDEERec() {
     const [activityLevel, setActivityLevel] = useState('1');
     const [recommendation, setRecommendation] = useState('');
     const [error, setError] = useState('');
+    const [showError, setShowError] = useState(false); // State to track error notification visibility
 
     const calculateTDEE = () => {
         // Validate input values
         if (parseFloat(height) <= 0 || parseFloat(weight) <= 0 || parseInt(age) <= 0) {
             setError('Please enter valid values for height, weight, and age.');
+            setShowError(true); // Show error notification
             return;
         }
 
@@ -70,6 +72,7 @@ function TDEERec() {
     const handleCalculateClick = () => {
         if (!height || !weight || !age) {
             setError('Please fill in all fields.');
+            setShowError(true);
             return;
         }
         calculateTDEE();
@@ -77,15 +80,16 @@ function TDEERec() {
 
     const handleCloseError = () => {
         setError('');
+        setShowError(false); 
     };
 
     return (
-        <div className='TDEE-container'>
+        <div className={`TDEE-container ${showError ? 'blurred' : ''}`}>
             <div className="container">
                 <h2>TDEE Calculator</h2>
                 <p>The Total Daily Energy Expenditure (TDEE) Calculator estimates how many calories you burn per day.</p>
 
-                {error && (
+                {showError && (
                     <div className="error-popup">
                         <p>{error}</p>
                         <button onClick={handleCloseError}>Close</button>
