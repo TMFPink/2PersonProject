@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import tdeebackground from '../../Asset/tdee/tdee-background.jpg';
 import './TDEERec.css';
 
 function TDEERec() {

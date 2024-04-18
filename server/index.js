@@ -11,6 +11,9 @@ const db = require("./models");
 const userRouter = require('./routes/user');
 app.use("/User", userRouter);
 
+const foodDetailRouter = require('./routes/FoodDetail');
+app.use("/FoodDetail", foodDetailRouter);
+
 const foodRouter = require('./routes/Food');
 app.use("/Food", foodRouter);
 

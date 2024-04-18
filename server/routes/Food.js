@@ -13,4 +13,13 @@ router.post("/", async (req, res) => {
     res.json(food)
 });
 
+
+router.get("/:id", async (req, res) => {
+    const foodId = req.params.id;
+    const food = await Food.findByPk(foodId);
+    if (!food) {
+        return res.status(404).json({ error: "Food not found" });
+    }
+    res.json(food);
+});
 module.exports = router;
