@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Food from '../../Pages/FoodList/FoodList';
-import Home from '../../Pages/homepage/homepage';
+import Food from '../../Pages/MealList/MealList';
+import Home from '../../Pages/Homepage/Homepage';
 import CreateFood from '../../Pages/CreateFood/CreateFood';
 import TDEE from '../../Pages/TDEERec/TDEERec';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
@@ -49,7 +49,7 @@ function Navbar() {
             <div className='navbutt-container'>
               <Link to="/" className='navbutt'> HOME</Link>
               <Link to="/tdee" className='navbutt'>CALCULATE TDEE</Link> 
-              <Link to="/food" className='navbutt'>FOOD LIST</Link>
+              <Link to="/food" className='navbutt'>MEAL LIST</Link>
               <Link to="/blog" className='navbutt'>BLOG</Link>
               <Link to="/account" className='navbutt'>ACCOUNT</Link>
             </div>

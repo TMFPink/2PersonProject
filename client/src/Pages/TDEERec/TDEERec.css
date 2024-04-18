@@ -2,6 +2,7 @@
   background-image: url('C:\Users\user\2PersonProject\client\src\Asset\tdee\tdee-background.jpg');
   background-size: cover;
   background-attachment: fixed;
+  position: relative;
 }
 
 .container {
@@ -47,8 +48,6 @@ h2 {
   color: #555;
 }
 
-
-
 label {
   display: block;
   margin-bottom: 8px;
@@ -79,6 +78,7 @@ select {
   margin-right: 150px;
   transform: translateY(20%);
 }
+
 button {
   display: block;
   width: 100%;
@@ -97,9 +97,10 @@ button:hover {
   background-color: #D3A121;
 }
 
-#activityLevel{
+#activityLevel {
   width: 400px;
 }
+
 .recommendation {
   margin-top: 20px;
   padding: 15px;
@@ -121,7 +122,6 @@ button:hover {
   font-size: 16px;
   color: #555;
 }
-
 
 .error-popup {
   position: fixed;
@@ -155,4 +155,8 @@ button:hover {
 
 .error-popup button:hover {
   background-color: #ccc;
+}
+
+.blur-background {
+  filter: blur(5px);
 }
