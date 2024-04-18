@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import './FoodList.css';
+import './MealList.css'
 
 function Food() {
-  const [ListOfFoods, setlistoffood] = useState([]);
+    const [ListOfFoods,setlistoffood] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:3001/food').then((response) => {
