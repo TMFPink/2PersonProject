@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Food from '../../Pages/MealList/MealList';
-import Home from '../../Pages/Homepage/Homepage';
+import Home from '../../Pages/HomePage/HomePage';
 import CreateFood from '../../Pages/CreateFood/CreateFood';
 import TDEE from '../../Pages/TDEERec/TDEERec';
 import FoodDetail from '../../Components/fooddetail/FoodDetail';

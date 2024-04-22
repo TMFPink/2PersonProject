@@ -5,17 +5,57 @@ import { useEffect, useState } from 'react';
 import './MealList.css'
 
 function Food() {
-    const [ListOfFoods,setlistoffood] = useState([])
+  // const [ListOfFoods,setlistoffood] = useState([])
+
+  // useEffect(() => {
+  //   axios.get('http://localhost:3001/food').then((response) => {
+  //     setlistoffood(response.data);
+  //   });
+  // }, []);
+
+  const [ListOfFoods, setListOfFoods] = useState([]);
+  const [sortedFoodByType, setSortedFoodByType] = useState({});
 
   useEffect(() => {
     axios.get('http://localhost:3001/food').then((response) => {
-      setlistoffood(response.data);
+      setListOfFoods(response.data);
+      sortFoodByType();
+    }).catch((error) => {
+      console.error('Error fetching all food items:', error);
     });
   }, []);
 
+  const sortFoodByType = () => {
+    const foodByType = {};
+    ListOfFoods.forEach((food) => {
+      const foodType = food.FoodType.TypeName;
+      if (!foodByType[foodType]) {
+        foodByType[foodType] = [];
+      }
+      foodByType[foodType].push(food);
+    });
+    setSortedFoodByType(foodByType);
+  };
+
+  const handleSortByType = (type) => {
+    axios.get(`http://localhost:3001/food/byType/${type}`).then((response) => {
+      setListOfFoods(response.data);
+      sortFoodByType();
+    }).catch((error) => {
+      console.error('Error fetching food by type:', error);
+    });
+  };
+
   return (
     <div>
-      {ListOfFoods.map((value, key) => {
+      <button onClick={() => handleSortByType('Appetizer')}>Sort by Appetizer</button>
+      <button onClick={() => handleSortByType('Side Dish')}>Sort by Side Dish</button>
+      <button onClick={() => handleSortByType('Soup')}>Sort by Soup</button>
+      <button onClick={() => handleSortByType('Salad')}>Sort by Salad</button>
+      <button onClick={() => handleSortByType('Main Course')}>Sort by Main Course</button>
+      <button onClick={() => handleSortByType('Dessert')}>Sort by Dessert</button>
+      <button onClick={() => handleSortByType('Beverage')}>Sort by Beverage</button>
+       {ListOfFoods.map((value, key) => {
         return (
           <div className='post' key={key}>
             <Link to={`/FoodDetail/${value.id}`} className='food-card-link'>
@@ -28,7 +68,7 @@ function Food() {
             </Link>
           </div>
         );
-      })}
+      })} 
     </div>
   );
 }

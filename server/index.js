@@ -7,6 +7,8 @@ app.use(express.json())
 app.use(cors())
 const db = require("./models");
 
+
+
 //Router
 const userRouter = require('./routes/user');
 app.use("/User", userRouter);
