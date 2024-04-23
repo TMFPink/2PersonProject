@@ -20,8 +20,6 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'FoodID'
         });
     };
-
-
     
     return FoodIngredients;
 };
