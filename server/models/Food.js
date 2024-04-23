@@ -25,6 +25,11 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
         
+        Image: {
+            type: DataTypes.BLOB, // Column to store the image data
+            allowNull: true
+        },
+        
     }, {
         timestamps: false // Exclude timestamps
     });
