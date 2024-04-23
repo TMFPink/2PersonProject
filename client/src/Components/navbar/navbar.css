@@ -74,3 +74,25 @@
   background-color: #ffffff;
   transform: scale(1.1);
 }
+
+.sorted-food-filter {
+  position: absolute;
+  top: 7%;
+  left: 65%;
+  background-color: #fff; /* Background color */
+  border: 1px solid #ccc; /* Border */
+  padding: 10px; /* Padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+  z-index: 1000; /* Ensure it appears above other content */
+}
+
+.sorted-food-filter a {
+  display: block;
+  color: #333; /* Link color */
+  text-decoration: none;
+  padding: 5px 10px; /* Padding for links */
+}
+
+.sorted-food-filter a:hover {
+  background-color: #f0f0f0; /* Background color on hover */
+}

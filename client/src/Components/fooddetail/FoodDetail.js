@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-
+import './FoodDetail.css';
 function FoodDetail() {
   let { id } = useParams();
   const [food, setFood] = useState([]);
