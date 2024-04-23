@@ -15,7 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         DOB:{
             type: DataTypes.DATE,
             allowNULL: true
-        }
+        },
+        Password:{
+            type: DataTypes.STRING,
+            allowNULL: false
+        },
     })
     return User;
     

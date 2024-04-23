@@ -23,7 +23,13 @@ module.exports = (sequelize, DataTypes) => {
         Instruction: {
             type: DataTypes.STRING,
             allowNull: true
-        }
+        },
+        
+        Image: {
+            type: DataTypes.BLOB, // Column to store the image data
+            allowNull: true
+        },
+        
     }, {
         timestamps: false // Exclude timestamps
     });
@@ -33,6 +39,12 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: 'FoodID'
         });
     };
+    Food.associate = (models) => {
+        Food.belongsTo(models.FoodType, {
+            foreignKey: 'FoodTypeID'
+        });
+    }
 
+    
     return Food;
 };
