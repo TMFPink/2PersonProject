@@ -7,6 +7,7 @@ import FoodDetail from '../../Components/fooddetail/FoodDetail';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import './navbar.css'
 import logo from '../../Asset/homepage/logo.png'
+import SortedFood from '../sortedfood/sortedfood';
 
 
 // function openmenu() { 
@@ -62,6 +63,7 @@ function Navbar() {
           <Route path="/createfood" exact Component={CreateFood} />
           <Route path="/tdee" exact Component={TDEE} />
           <Route path="/fooddetail/:id" exact Component={FoodDetail} />
+          <Route path="/sorted-food/:type" exact Component={SortedFood} />
         </Routes>  
       </Router>
       <div className={`scroll-to-top ${isVisible ? 'show' : ''}`} onClick={scrollToTop}>
