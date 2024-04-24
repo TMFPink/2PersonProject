@@ -53,7 +53,7 @@ function Navbar() {
         <div className='navigation-bar'> 
           <div className='nav-container'>
             <img src={logo} alt="logo" className='nav-logo'/>
-           
+        
             <div className='navbutt-container'>
               <Link to="/" className='navbutt'> HOME</Link>
               <Link to="/tdee" className='navbutt'>CALCULATE TDEE</Link> 
@@ -64,18 +64,17 @@ function Navbar() {
           </div>
         </div>
         {isVisible && (
-          <div
-            className="sorted-food-filter"
+          <div className="sorted-food-filter"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
-            <Link to="/sorted-food/Appetizer">Sort by Appetizer</Link>
-            <Link to="/sorted-food/Side Dish">Sort by Side Dish</Link>
-            <Link to="/sorted-food/Soup">Sort by Soup</Link>
-            <Link to="/sorted-food/Salad">Sort by Salad</Link>
-            <Link to="/sorted-food/Main Course">Sort by Main Course</Link>
-            <Link to="/sorted-food/Dessert">Sort by Dessert</Link>
-            <Link to="/sorted-food/Beverage">Sort by Beverage</Link>
+            <Link to="/sorted-food/Appetizer">Appetizer</Link>
+            <Link to="/sorted-food/Side Dish">Side Dish</Link>
+            <Link to="/sorted-food/Soup">Soup</Link>
+            <Link to="/sorted-food/Salad">Salad</Link>
+            <Link to="/sorted-food/Main Course">Main Course</Link>
+            <Link to="/sorted-food/Dessert">Dessert</Link>
+            <Link to="/sorted-food/Beverage">Beverage</Link>
           </div>
         )}
         <Routes>

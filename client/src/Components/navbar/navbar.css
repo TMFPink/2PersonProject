@@ -77,22 +77,27 @@
 
 .sorted-food-filter {
   position: absolute;
-  top: 7%;
-  left: 65%;
-  background-color: #fff; /* Background color */
-  border: 1px solid #ccc; /* Border */
-  padding: 10px; /* Padding */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
-  z-index: 1000; /* Ensure it appears above other content */
+  top: calc(8% + 10px);
+  margin-left:  73%;
+  background-color: #000000; 
+  border: 1px solid #000000;
+  padding: 10px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  z-index: 1000; 
+  border-radius: 20px;
 }
 
+.sorted-food-filter.show {
+  display: block; 
+}
 .sorted-food-filter a {
   display: block;
-  color: #333; /* Link color */
+  color: #ffffff; 
   text-decoration: none;
-  padding: 5px 10px; /* Padding for links */
+  padding: 5px 10px; 
 }
 
 .sorted-food-filter a:hover {
-  background-color: #f0f0f0; /* Background color on hover */
+  color: #D3A121;
+  border-radius: 20px;
 }
