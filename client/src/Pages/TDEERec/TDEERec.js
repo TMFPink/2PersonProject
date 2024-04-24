@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './TDEERec.css';
 
 function TDEERec() {
@@ -154,6 +155,17 @@ function TDEERec() {
 
             <button onClick={handleCalculateClick}>Calculate</button>
         </div>
+        <footer className="footer-section">
+        <div className="footer-content">
+            <ul>
+                <li><Link to="/blog">Blog</Link></li>
+                <li><div style={{color:'#FFFFFF'}}> Terms of Service </div></li>
+                <li><div style={{color:'#FFFFFF'}}> Privacy Policy </div></li>
+                <li><a href="mailto:food4g@gmail.com">Contact Us</a></li>
+            </ul>
+            <p style={{color:'#FFFFFF'}}>&copy; 2024 Fitness Journey. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
     );
 }

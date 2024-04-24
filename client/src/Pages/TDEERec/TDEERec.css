@@ -231,3 +231,40 @@ button:hover {
   background-color: #ccc;
 }
 
+/* Footer Section */
+.footer-section {
+  background-color:  #272728;
+  padding: 40px 0;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-content ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-content ul li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.footer-content ul li:last-child {
+  margin-right: 0;
+}
+
+.footer-content ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.footer-content p {
+  margin-top: 20px;
+  font-size: 14px;
+}

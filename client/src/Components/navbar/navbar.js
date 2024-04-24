@@ -9,10 +9,6 @@ import './navbar.css'
 import logo from '../../Asset/homepage/logo.png'
 import SortedFood from '../sortedfood/sortedfood';
 
-
-// function openmenu() { 
-//   document.getElementsByClassName('menu').style.width = '200px';
-// }
 function Navbar() { 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -42,21 +38,45 @@ function Navbar() {
     };
   }, []);
 
+  const handleMouseEnter = () => {
+    setIsVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsVisible(false);
+  };
+
   return (
     <div>
+      
       <Router>
         <div className='navigation-bar'> 
           <div className='nav-container'>
             <img src={logo} alt="logo" className='nav-logo'/>
+        
             <div className='navbutt-container'>
               <Link to="/" className='navbutt'> HOME</Link>
               <Link to="/tdee" className='navbutt'>CALCULATE TDEE</Link> 
-              <Link to="/food" className='navbutt'>MEAL LIST</Link>
+              <Link to="/food" className='navbutt' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>MEAL LIST</Link>
               <Link to="/blog" className='navbutt'>BLOG</Link>
               <Link to="/account" className='navbutt'>ACCOUNT</Link>
             </div>
           </div>
         </div>
+        {isVisible && (
+          <div className="sorted-food-filter"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            <Link to="/sorted-food/Appetizer">Appetizer</Link>
+            <Link to="/sorted-food/Side Dish">Side Dish</Link>
+            <Link to="/sorted-food/Soup">Soup</Link>
+            <Link to="/sorted-food/Salad">Salad</Link>
+            <Link to="/sorted-food/Main Course">Main Course</Link>
+            <Link to="/sorted-food/Dessert">Dessert</Link>
+            <Link to="/sorted-food/Beverage">Beverage</Link>
+          </div>
+        )}
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/food" exact Component={Food} />
