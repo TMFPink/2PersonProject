@@ -1,6 +1,6 @@
 .TDEE-container {
-  background-image: url('C:\Users\user\2PersonProject\client\src\Asset\tdee\tdee-background.jpg');
-  /* background-image: url('/Users/nguyenhong/Documents/FymAndGoodProject/client/src/Asset/tdee/tdee-background.jpg'); */
+  /* background-image: url('C:\Users\user\2PersonProject\client\src\Asset\tdee\tdee-background.jpg'); */
+  background-image: url('/Users/nguyenhong/Documents/FymAndGoodProject/client/src/Asset/tdee/tdee-background.jpg');
   background-size: cover;
   background-attachment: fixed;
   position: relative;
@@ -210,6 +210,7 @@ button:hover {
   z-index: 9999;
 }
 
+
 .recommendation-popup p {
   margin: 0;
   font-size: 16px;
@@ -267,4 +268,14 @@ button:hover {
 .footer-content p {
   margin-top: 20px;
   font-size: 14px;
+}
+
+.food-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.TDEE-container .food-card {
+  margin: 0 10px;
 }
