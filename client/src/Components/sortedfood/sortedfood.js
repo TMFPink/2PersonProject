@@ -11,6 +11,7 @@ function SortedFood() {
   const { type } = useParams();
   const [sortedFoods, setSortedFoods] = useState([]);
   
+  
   useEffect(() => {
     axios.get(`http://localhost:3001/food/byType/${type}`).then((response) => {
       setSortedFoods(response.data);

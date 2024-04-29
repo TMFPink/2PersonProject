@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './TDEERec.css';
-
+import axios from 'axios';
+import caloriesIcon from '../../Asset/meallist/calories.png';
 function TDEERec() {
     const [height, setHeight] = useState('');
     const [weight, setWeight] = useState('');
@@ -12,7 +13,23 @@ function TDEERec() {
     const [error, setError] = useState('');
     const [showError, setShowError] = useState(false); 
     const [showRecommendation, setShowRecommendation] = useState(false); 
-    const [tdeeValue, setTdeeValue] = useState(0);
+    const [listoffood, setListoffood] = useState([]);
+    const [tdee, setTdee] = useState(0);
+
+    useEffect(() => {
+        axios.get(`http://localhost:3001/food/`).then((response) => {
+        setListoffood(response.data);
+        });
+    }, []);
+
+    const supportedImageFormats = ['jpeg', 'jpg', 'png', 'webp'];
+    const getImageUrl = (id) => {
+        for (const format of supportedImageFormats) {
+          const imageUrl = `/foodpicture/${id}.${format}`;
+          return imageUrl;
+        }
+        return '/foodpicture/default.jpg';
+      };
 
     const calculateTDEE = () => {
         if (parseFloat(height) <= 0 || parseFloat(weight) <= 0 || parseInt(age) <= 0) {
@@ -56,14 +73,17 @@ function TDEERec() {
 
         let recommendationText;
         
-        if (tdee < 1500) {
-            recommendationText = `Your TDEE (Total Daily Energy Expenditure) is approximately <span style="color: red;">${tdee.toFixed(2)} calories</span> per day. Aim to maintain a balanced diet with a mix of carbohydrates, proteins, and fats. Include plenty of fruits, vegetables, whole grains, lean proteins, and healthy fats in your meals.`;
+        setTdee(tdee);
+
+        if (tdee < 2300) {
+            recommendationText = `Your TDEE (Total Daily Energy Expenditure) is approximately <span style="color: red;">${tdee.toFixed(2)} calories</span> per day. It seems like your energy expenditure is relatively low. To maintain a healthy lifestyle, aim for a balanced diet with a mix of carbohydrates, proteins, and fats. Include plenty of fruits, vegetables, whole grains, lean proteins, and healthy fats in your meals. Additionally, consider incorporating regular physical activity into your routine to enhance your overall well-being.`;
         } else {
-            recommendationText = `Your TDEE (Total Daily Energy Expenditure) is approximately <span style="color: red;">${tdee.toFixed(2)} calories</span> per day. To maintain your current weight, you should aim to consume around this amount of calories per day. Make sure to include a variety of foods from all food groups in your diet to meet your nutritional needs.`;
+            recommendationText = `Your TDEE (Total Daily Energy Expenditure) is approximately <span style="color: red;">${tdee.toFixed(2)} calories</span> per day. It appears that you have a higher energy expenditure. To maintain your current weight and support your active lifestyle, aim to consume around this amount of calories per day. Focus on incorporating a variety of nutrient-dense foods from all food groups in your diet to meet your nutritional needs and support your energy requirements. Additionally, consider incorporating regular physical activity tailored to your preferences and fitness goals to optimize your health and well-being.`;
         }
+
         
         setRecommendation(recommendationText);
-        setTdeeValue(tdee.toFixed(2));
+        // setTdeeValue(tdee.toFixed(2));
         setError('');
         setShowRecommendation(true); 
     };
@@ -99,15 +119,45 @@ function TDEERec() {
                     <button onClick={handleCloseError}>Close</button>
                 </div>
             )}
-
             {showRecommendation && (
                 <div className="recommendation-popup">
                     <h3>Recommendation:</h3>
                     <p style={{fontSize:'25px'}} dangerouslySetInnerHTML={{ __html: recommendation }}></p>
+                    <div className="food-row">
+                        {listoffood
+                        .slice(0,6)
+                        .sort((a, b) => {
+                            const differenceA = Math.abs(a.Calories - tdee);
+                            const differenceB = Math.abs(b.Calories - tdee);
+                            // Ascending order (Lowest to Highest)
+                            if(tdee > 2300)
+                            return differenceA - differenceB;
+                            // Descending order (Highest to Lowest)
+                            return differenceB - differenceA;
+                            
+                        })
+                        .map((value, key) => (
+                            <div className="food-card" key={key}>
+                                <Link to={`/FoodDetail/${value.id}`} className="food-card-link">
+                                    <div className="food-image-container">
+                                        <img className="food-image" src={getImageUrl(value.id)} alt="Food" />
+                                    </div>
+                                    <div className="food-details">
+                                        <div className="food-name">{value.FoodName}</div>
+                                        <div className="nutrition-info">
+                                            <div className="info-item">
+                                                <img className="nutrition-icon" src={caloriesIcon} alt="Calories" />
+                                                Calories: {value.Calories}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            </div>
+                        ))}
+                    </div>
                     <button onClick={handleCloseRecommendation}>Close</button>
                 </div>
             )}
-
             <div className="input-group">
                 <label htmlFor="height">Height:</label>
                 <div className="input-with-placeholder">
