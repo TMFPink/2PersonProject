@@ -15,12 +15,10 @@ const db = require("./models");
 
 
 //Router
-const userRouter = require('./routes/user');
-app.use("/User", userRouter);
-
+const userRouter = require('./routes/User');
+app.use("/auth", userRouter);
 const foodDetailRouter = require('./routes/FoodDetail');
 app.use("/FoodDetail", foodDetailRouter);
-
 const foodRouter = require('./routes/Food');
 app.use("/Food", foodRouter);
 
