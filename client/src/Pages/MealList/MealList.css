@@ -124,3 +124,104 @@
     margin-top: 20px;
     font-size: 14px;
 }
+
+
+.SearchText {
+    display: flex;
+    align-items: center;
+    /* Add any additional styling for the search text */
+}
+
+.SearchBox {
+    position: relative; /* Position relative for absolute positioning of the search results */
+    flex: 1; /* Expand to fill remaining space */
+    margin-left: 100px;
+    /* margin-right: 10px; */
+}
+.SearchInput {
+    width: 100%; /* Take up 100% width of the SearchBox */
+    padding: 8px; /* Add padding to the input */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box; /* Ensure padding and border are included in width calculation */
+}
+.SearchResults {
+    position: absolute;
+    top: 100%; /* Position below the search input */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none; /* Remove top border */
+    z-index: 1000; /* Ensure it appears above other elements */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-height: 400px; /* Limit max height for scroll */
+    overflow-y: auto; /* Enable vertical scroll if needed */
+    border-radius: 10px;
+}
+
+.SearchResultItem {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.BookThumbnail {
+    width: 100px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    margin-right: 10px;
+}
+
+.BookTitle_Search {
+    color: black;
+    font-size: large;    
+    font-weight: bold;
+}
+
+/* Style for the hovered item */
+.SearchResultItem:hover {
+    background-color: #f5f5f5;
+}
+
+.SearchContainer {
+    display: flex;
+    align-items: center;
+    border: 2px solid #950D14;
+    border-radius: 40px;
+    padding: 5px;
+    width: 90%;
+    height: 20px
+}
+
+.filterlist {
+    margin-top: 20px;
+  }
+  
+  .filtercontent {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .filter-button {
+    background-color: #ddd;
+    color: #333;
+    padding: 5px 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filter-button:hover {
+    background-color: #ccc;
+  }
+  
+  .filter-button.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  

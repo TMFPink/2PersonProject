@@ -114,6 +114,10 @@ function Navbar() {
       });
   };
 
+  const handleLogout = () => {
+    setUser(null);
+  };
+
   const scrollToTop = () => {
     const scrollStep = -window.scrollY / (800 / 15); 
     const scrollInterval = setInterval(() => {
@@ -163,13 +167,19 @@ function Navbar() {
               <Link to="/blog" className='navbutt'>BLOG</Link>
               {/* <Link to="/account" className='navbutt'>ACCOUNT</Link> */}
               {user ? (
-                <Link to="/account" className='navbutt'>
-                  <span>Hi, {user.Name}</span>
-                </Link>
+                <div  className='navbutt'>
+                  <span>HI, </span>
+                  <span style={{textTransform:'uppercase'}}>{user.Name}</span>
+                </div>
               ) : (
                 <div to="/account" className='navbutt' style={{cursor:'pointer'}} onClick={openLoginForm}>
                   <span>ACCOUNT</span>
                 </div>
+              )}
+              {user && (
+                <Link to="/" onClick={() => handleLogout()} className='navbutt'>
+                  LOGOUT
+                </Link>
               )}
             </div>
           </div>
