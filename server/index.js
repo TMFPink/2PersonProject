@@ -21,6 +21,8 @@ const foodDetailRouter = require('./routes/FoodDetail');
 app.use("/FoodDetail", foodDetailRouter);
 const foodRouter = require('./routes/Food');
 app.use("/Food", foodRouter);
+const foodTypeRouter = require('./routes/FoodIngre');
+app.use("/FoodIngre", foodTypeRouter);
 
 db.sequelize.sync().then(() => {
     app.listen(3001, () => {

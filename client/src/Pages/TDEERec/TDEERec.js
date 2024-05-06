@@ -125,17 +125,17 @@ function TDEERec() {
                     <p style={{fontSize:'25px'}} dangerouslySetInnerHTML={{ __html: recommendation }}></p>
                     <div className="food-row">
                         {listoffood
-                        .slice(0,6)
                         .sort((a, b) => {
                             const differenceA = Math.abs(a.Calories - tdee);
                             const differenceB = Math.abs(b.Calories - tdee);
                             // Ascending order (Lowest to Highest)
-                            if(tdee > 2300)
-                            return differenceA - differenceB;
-                            // Descending order (Highest to Lowest)
-                            return differenceB - differenceA;
-                            
+                            if (tdee > 2300) {
+                                return differenceA - differenceB;
+                            } else { // Descending order (Highest to Lowest)
+                                return differenceB - differenceA;
+                            }
                         })
+                        .slice(0,4)
                         .map((value, key) => (
                             <div className="food-card" key={key}>
                                 <Link to={`/FoodDetail/${value.id}`} className="food-card-link">
