@@ -13,7 +13,7 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); 
   backdrop-filter: blur(8px); 
-  z-index: 999; 
+  z-index: 1000; 
 }
 
 .container {
@@ -163,73 +163,75 @@ button:hover {
   color: #555;
 }
 
-.error-popup {
+.TDEE-container .error-popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
   border-radius: 8px;
-  color: #ffffff;
+  color: #000000;
   text-align: center;
+  height: auto;
   z-index: 9999;
 }
 
-.error-popup p {
+.TDEE-container .error-popup p {
   margin: 0;
   font-size: 16px;
   line-height: 1.5;
 }
 
-.error-popup button {
+.TDEE-container .error-popup button {
   margin-top: 10px;
   padding: 8px 20px;
-  background-color: #fff;
-  color: #333;
+  background-color: #000000;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
 }
 
-.error-popup button:hover {
-  background-color: #ccc;
+.TDEE-container .error-popup button:hover {
+  background-color: #D3A121;
 }
 
-.recommendation-popup {
+.TDEE-container .recommendation-popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(255, 255, 255, 0.9);
   padding: 20px;
   border-radius: 8px;
-  color: #ffffff;
+  color: #000000;
   text-align: center;
   z-index: 9999;
+  width: 700px;
+  height: 500px;
 }
 
 
-.recommendation-popup p {
+.TDEE-container .recommendation-popup p {
   margin: 0;
-  font-size: 16px;
   line-height: 1.5;
 }
 
-.recommendation-popup button {
+.TDEE-container .recommendation-popup button {
   margin-top: 10px;
   padding: 8px 20px;
-  background-color: #fff;
-  color: #333;
+  background-color: #000000;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
 }
 
-.recommendation-popup button:hover {
-  background-color: #ccc;
+.TDEE-container .recommendation-popup button:hover {
+  background-color: #333;
 }
 
 /* Footer Section */
@@ -278,4 +280,43 @@ button:hover {
 
 .TDEE-container .food-card {
   margin: 0 10px;
+  height: 250px;
+}
+
+.TDEE-container .food-name {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.TDEE-container.nutrition-info {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  color: #D3A121;
+  align-items: center; 
+  justify-content: center;
+}
+
+.TDEE-container .food-image-container {
+  height: 170px;
+  overflow: hidden;
+}
+.TDEE-container .food-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.TDEE-container .info-item {
+  flex: 1 1 50%; 
+  display: flex;
+  align-items: center;
+  margin-left: -58px;
+  font-size: 16px;
 }

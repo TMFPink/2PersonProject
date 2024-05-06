@@ -8,9 +8,111 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import './navbar.css'
 import logo from '../../Asset/homepage/logo.png'
 import SortedFood from '../sortedfood/sortedfood';
+import axios from 'axios';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 function Navbar() { 
   const [isVisible, setIsVisible] = useState(false);
+
+  // user state
+  const [user, setUser] = useState(null);
+  // show login form and register form
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
+  // Pop-up state for login success/failure
+  const [showLoginSuccessPopup, setShowLoginSuccessPopup] = useState(false);
+  const [showLoginErrorPopup, setShowLoginErrorPopup] = useState(false);
+
+  // Pop-up state for register success/failure
+  const [showRegisterSuccessPopup, setShowRegisterSuccessPopup] = useState(false);
+  const [showRegisterErrorPopup, setShowRegisterErrorPopup] = useState(false);
+
+  const openLoginForm = () => {
+    setShowRegisterForm(false);
+    setShowLoginForm(true);
+  };
+
+  const closeLoginForm = () => {
+    setShowLoginForm(false);
+  };
+
+
+  const openRegisterForm = () => {
+    setShowLoginForm(false);
+    setShowRegisterForm(true);
+  };
+
+  const closeRegisterForm = () => {
+    setShowRegisterForm(false);
+  };
+
+  // Handler functions for closing pop-ups
+  const closeLoginPopups = () => {
+    setShowLoginSuccessPopup(false);
+    setShowLoginErrorPopup(false);
+  };
+
+  const closeRegisterPopups = () => {
+    setShowRegisterSuccessPopup(false);
+    setShowRegisterErrorPopup(false);
+  };
+
+  // validation schema
+  const loginSchema = Yup.object().shape({
+    Mail: Yup.string().required('*'),
+    Password: Yup.string().min(6).required('*'),
+  });
+
+  const registerSchema = Yup.object().shape({
+    Name: Yup.string().required('*'),
+    Mail: Yup.string().email('Invalid email').required('*'),
+    Phone: Yup.string().required('*'),
+    DOB: Yup.date().required('*'),
+    Password: Yup.string().required('*'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('Password'), null], 'Passwords must match')
+      .required('*'),
+    Address: Yup.string().required('*'),
+  });
+
+
+  const handleLoginSubmit = (data) => {
+    axios.post('http://localhost:3001/auth/login', data)
+      .then((response) => {
+        console.log("Login Response:", response.data);
+        if (response.data.message === "YOU LOGGED IN!!!") {
+          closeLoginForm();
+          closeRegisterForm();
+          setShowLoginSuccessPopup(true);
+          setUser(response.data.user);
+        } else {
+          // closeLoginForm();
+          // closeRegisterForm();
+          setShowLoginErrorPopup(true);
+        }
+      })
+      .catch((error) => {
+        console.error("Login Error:", error);
+        setShowLoginErrorPopup(true);
+      });
+  };
+
+
+  const handleRegisterSubmit = (data) => {
+    axios.post('http://localhost:3001/auth', data)
+      .then(() => {
+        console.log("Register success");
+        setShowRegisterSuccessPopup(true);
+        closeLoginForm();
+        closeRegisterForm();
+      })
+      .catch((error) => {
+        console.error("Register Error:", error);
+        closeLoginForm();
+        setShowRegisterErrorPopup(true);
+      });
+  };
 
   const scrollToTop = () => {
     const scrollStep = -window.scrollY / (800 / 15); 
@@ -59,7 +161,16 @@ function Navbar() {
               <Link to="/tdee" className='navbutt'>CALCULATE TDEE</Link> 
               <Link to="/food" className='navbutt' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>MEAL LIST</Link>
               <Link to="/blog" className='navbutt'>BLOG</Link>
-              <Link to="/account" className='navbutt'>ACCOUNT</Link>
+              {/* <Link to="/account" className='navbutt'>ACCOUNT</Link> */}
+              {user ? (
+                <Link to="/account" className='navbutt'>
+                  <span>Hi, {user.Name}</span>
+                </Link>
+              ) : (
+                <div to="/account" className='navbutt' style={{cursor:'pointer'}} onClick={openLoginForm}>
+                  <span>ACCOUNT</span>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -89,6 +200,129 @@ function Navbar() {
       <div className={`scroll-to-top ${isVisible ? 'show' : ''}`} onClick={scrollToTop}>
         <span>&#8679;</span>
       </div>
+      {showLoginForm && (
+        <div className='overlay'>
+          <div className='login-form-container'>
+            <div  className='close-button' onClick={closeLoginForm} >&#10006;</div>
+
+            <div className='login-form'>
+              <h2>Please log in to continue</h2>
+              <Formik
+                initialValues={{ Mail: '', Password: '' }}
+                validationSchema={loginSchema}
+                onSubmit={handleLoginSubmit} >
+                
+                  <Form>
+                    <div className='form-group'>
+                      <label htmlFor='Mail'>Email</label>
+                      <Field type='text' id='Mail' name='Mail' />
+                      <ErrorMessage name='Mail' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='Password'>Password</label>
+                      <Field type='password' id='Password' name='Password' />
+                      <ErrorMessage name='Password' component='div' className='error-message' />
+                    </div>
+                    <button type='submit' className='login-button'>
+                      Login
+                    </button>
+                  </Form>
+              </Formik>
+              <div style={{ display: 'flex', flexDirection: 'row', paddingTop: '20px' }}>
+                <span style={{ paddingRight: '5px',marginLeft:'8px' }}>Don't have an account yet? </span>
+                <span style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={openRegisterForm}>Sign Up</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        )}
+      {showRegisterForm && (
+        <div className='overlay'>
+          <div className='register-form-container'>
+            <div  className='close-button' onClick={closeRegisterForm} alt='clostform'>&#10006;</div>
+            <h2>Create new account</h2>
+            <Formik initialValues={{ Name: '', Mail: '', Phone: '', DOB: '', Password: '', Address: '', confirmPassword: ''}} validationSchema={registerSchema} onSubmit={handleRegisterSubmit}>
+                <Form className='register-form'>
+                  <div className='column'>
+                    <div className='form-group'>
+                      <label htmlFor='Name'>Name</label>
+                      <Field type='text' id='Name' name='Name' />
+                      <ErrorMessage name='Name' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='Mail'>Email</label>
+                      <Field type='Email' id='Mail' name='Mail' />
+                      <ErrorMessage name='Mail' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='Phone'>Phone number</label>
+                      <Field type='text' id='Phone' name='Phone' />
+                      <ErrorMessage name='Phone' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='DOB'>Date of birth</label>
+                      <Field type='date' id='DOB' name='DOB' />
+                      <ErrorMessage name='DOB' component='div' className='error-message' />
+                    </div>
+                  </div>
+                  <div className='column'>
+                    <div className='form-group'>
+                      <label htmlFor='Password'>Password</label>
+                      <Field type='Password' id='Password' name='Password' />
+                      <ErrorMessage name='Password' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='confirmPassword'>Confirmed Password</label>
+                      <Field type='password' id='confirmPassword' name='confirmPassword' />
+                      <ErrorMessage name='confirmPassword' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='Address'>Address</label>
+                      <Field type='text' id='Address' name='Address' />
+                      <ErrorMessage name='Address' component='div' className='error-message' />
+                    </div>
+                  </div>
+                </Form>
+            </Formik>
+            <button type='submit' className='register-button'>Sign Up</button>
+            <div style={{display:'flex',flexDirection:'row',paddingTop:'20px'}}>
+              <span style={{paddingRight:'5px'}}>Already have an account? </span>
+              <span style={{textDecoration:'underline',cursor:"pointer"}} onClick={openLoginForm} >Sign In</span>
+            </div>
+          </div>
+        </div>
+      )}
+      {showLoginSuccessPopup && (
+      <div className="success-popup-overlay" onClick={closeLoginPopups}>
+        
+        <div className="success-popup">         
+            <p>Đăng nhập thành công!</p>
+        </div>
+      </div>
+    )}
+      {showLoginErrorPopup && (
+      <div className="error-popup-overlay" onClick={closeLoginPopups}>
+        <div className="error-popup">
+          <p>Đăng nhập thất bại. </p>
+          <p>Vui lòng kiểm tra lại thông tin đăng nhập.</p>
+        </div>
+      </div>
+    )}
+    {showRegisterSuccessPopup && (
+      <div className="success-popup-overlay" onClick={closeRegisterPopups}>
+        <div className="success-popup">
+          <p>Đăng ký thành công!</p>
+        </div>
+      </div>
+    )}
+    {showRegisterErrorPopup && (
+      <div className="error-popup-overlay" onClick={closeRegisterPopups}>
+        <div className="error-popup">
+          <p>Đăng ký thất bại. </p>
+          <p>Vui lòng thử lại sau.</p>
+        </div>
+      </div>
+    )}
     </div>
   );
 }
