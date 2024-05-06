@@ -163,7 +163,7 @@ button:hover {
   color: #555;
 }
 
-.error-popup {
+.TDEE-container .error-popup {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -174,7 +174,9 @@ button:hover {
   color: #ffffff;
   text-align: center;
   z-index: 9999;
+  height: auto;
 }
+
 
 .error-popup p {
   margin: 0;
