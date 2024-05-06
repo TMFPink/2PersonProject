@@ -11,12 +11,13 @@ import SortedFood from '../sortedfood/sortedfood';
 import axios from 'axios';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+
 function Navbar() { 
   const [isVisible, setIsVisible] = useState(false);
 
-  //user state
+  // user state
   const [user, setUser] = useState(null);
-  //show login form and register form
+  // show login form and register form
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
   // Pop-up state for login success/failure
@@ -57,22 +58,22 @@ function Navbar() {
     setShowRegisterErrorPopup(false);
   };
 
-  //validation schema
+  // validation schema
   const loginSchema = Yup.object().shape({
-    Mail: Yup.string().required('Required'),
-    Password: Yup.string().min(6).required('Required'),
+    Mail: Yup.string().required('*'),
+    Password: Yup.string().min(6).required('*'),
   });
 
   const registerSchema = Yup.object().shape({
-    Name: Yup.string().required('Required'),
-    Mail: Yup.string().email('Invalid email').required('Required'),
-    Phone: Yup.string().required('Required'),
-    DOB: Yup.date().required('Required'),
-    Password: Yup.string().required('Required'),
+    Name: Yup.string().required('*'),
+    Mail: Yup.string().email('Invalid email').required('*'),
+    Phone: Yup.string().required('*'),
+    DOB: Yup.date().required('*'),
+    Password: Yup.string().required('*'),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref('Password'), null], 'Passwords must match')
-      .required('Required'),
-    Address: Yup.string().required('Required'),
+      .required('*'),
+    Address: Yup.string().required('*'),
   });
 
 
@@ -212,10 +213,10 @@ function Navbar() {
       {showLoginForm && (
         <div className='overlay'>
           <div className='login-form-container'>
-            <div  className='close-button' onClick={closeLoginForm} >close</div>
+            <div  className='close-button' onClick={closeLoginForm} >&#10006;</div>
 
             <div className='login-form'>
-              <h2>Vui lòng đăng nhập để tiếp tục</h2>
+              <h2>Please log in to continue</h2>
               <Formik
                 initialValues={{ Mail: '', Password: '' }}
                 validationSchema={loginSchema}
@@ -223,25 +224,23 @@ function Navbar() {
                 
                   <Form>
                     <div className='form-group'>
-                      <label htmlFor='Mail'>Mail đăng nhập</label>
+                      <label htmlFor='Mail'>Email</label>
                       <Field type='text' id='Mail' name='Mail' />
                       <ErrorMessage name='Mail' component='div' className='error-message' />
                     </div>
                     <div className='form-group'>
-                      <label htmlFor='Password'>Mật khẩu</label>
+                      <label htmlFor='Password'>Password</label>
                       <Field type='password' id='Password' name='Password' />
                       <ErrorMessage name='Password' component='div' className='error-message' />
                     </div>
                     <button type='submit' className='login-button'>
-                      Đăng nhập
+                      Login
                     </button>
                   </Form>
-                
               </Formik>
-
               <div style={{ display: 'flex', flexDirection: 'row', paddingTop: '20px' }}>
-                <span style={{ paddingRight: '5px' }}>Chưa có tài khoản? </span>
-                <span style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={openRegisterForm}>Đăng ký ngay!</span>
+                <span style={{ paddingRight: '5px',marginLeft:'8px' }}>Don't have an account yet? </span>
+                <span style={{ textDecoration: 'underline', cursor: 'pointer' }} onClick={openRegisterForm}>Sign Up</span>
               </div>
             </div>
           </div>
@@ -250,56 +249,56 @@ function Navbar() {
       {showRegisterForm && (
         <div className='overlay'>
           <div className='register-form-container'>
-            <div  className='close-button' onClick={closeRegisterForm} alt='clostform'>close</div>
-            <Formik initialValues={{ Name: '', Mail: '', Phone: '', DOB: '', Password: '', Address: '' ,confirmPassword: ''}} validationSchema={registerSchema} onSubmit={handleRegisterSubmit}>
-            
+            <div  className='close-button' onClick={closeRegisterForm} alt='clostform'>&#10006;</div>
+            <h2>Create new account</h2>
+            <Formik initialValues={{ Name: '', Mail: '', Phone: '', DOB: '', Password: '', Address: '', confirmPassword: ''}} validationSchema={registerSchema} onSubmit={handleRegisterSubmit}>
                 <Form className='register-form'>
-                  <h2>Đăng ký tài khoản mới</h2>
-                  <div className='form-group'>
-                    <label htmlFor='Name'>Tên</label>
-                    <Field type='text' id='Name' name='Name' />
-                    <ErrorMessage name='Name' component='div' className='error-message' />
+                  <div className='column'>
+                    <div className='form-group'>
+                      <label htmlFor='Name'>Name</label>
+                      <Field type='text' id='Name' name='Name' />
+                      <ErrorMessage name='Name' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='Mail'>Email</label>
+                      <Field type='Email' id='Mail' name='Mail' />
+                      <ErrorMessage name='Mail' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='Phone'>Phone number</label>
+                      <Field type='text' id='Phone' name='Phone' />
+                      <ErrorMessage name='Phone' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='DOB'>Date of birth</label>
+                      <Field type='date' id='DOB' name='DOB' />
+                      <ErrorMessage name='DOB' component='div' className='error-message' />
+                    </div>
                   </div>
-                  <div className='form-group'>
-                    <label htmlFor='Mail'>Email</label>
-                    <Field type='Email' id='Mail' name='Mail' />
-                    <ErrorMessage name='Mail' component='div' className='error-message' />
-                  </div>
-                  <div className='form-group'>
-                    <label htmlFor='Phone'>Số điện thoại</label>
-                    <Field type='text' id='Phone' name='Phone' />
-                    <ErrorMessage name='Phone' component='div' className='error-message' />
-                  </div>
-                  <div className='form-group'>
-                    <label htmlFor='DOB'>Ngày tháng năm sinh</label>
-                    <Field type='date' id='DOB' name='DOB' />
-                    <ErrorMessage name='DOB' component='div' className='error-message' />
-                  </div>
-                  <div className='form-group'>
-                    <label htmlFor='Password'>Mật khẩu</label>
-                    <Field type='Password' id='Password' name='Password' />
-                    <ErrorMessage name='Password' component='div' className='error-message' />
-                  </div>
-                  <div className='form-group'>
-                    <label htmlFor='confirmPassword'>Xác nhận mật khẩu</label>
-                    <Field type='password' id='confirmPassword' name='confirmPassword' />
-                    <ErrorMessage name='confirmPassword' component='div' className='error-message' />
-                  </div>
-                  <div className='form-group'>
-                    <label htmlFor='Address'>Địa chỉ</label>
-                    <Field type='text' id='Address' name='Address' />
-                    <ErrorMessage name='Address' component='div' className='error-message' />
-                  </div>
-                  <button type='submit' className='register-button'>
-                    Đăng ký
-                  </button>
-                  <div style={{display:'flex',flexDirection:'row',paddingTop:'20px'}}>
-                    <span style={{paddingRight:'5px'}}>Đã có tài khoản? </span>
-                    <span style={{textDecoration:'underline',cursor:"pointer"}} onClick={openLoginForm} >Đăng nhập ngay!</span>
+                  <div className='column'>
+                    <div className='form-group'>
+                      <label htmlFor='Password'>Password</label>
+                      <Field type='Password' id='Password' name='Password' />
+                      <ErrorMessage name='Password' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='confirmPassword'>Confirmed Password</label>
+                      <Field type='password' id='confirmPassword' name='confirmPassword' />
+                      <ErrorMessage name='confirmPassword' component='div' className='error-message' />
+                    </div>
+                    <div className='form-group'>
+                      <label htmlFor='Address'>Address</label>
+                      <Field type='text' id='Address' name='Address' />
+                      <ErrorMessage name='Address' component='div' className='error-message' />
+                    </div>
                   </div>
                 </Form>
-            
             </Formik>
+            <button type='submit' className='register-button'>Sign Up</button>
+            <div style={{display:'flex',flexDirection:'row',paddingTop:'20px'}}>
+              <span style={{paddingRight:'5px'}}>Already have an account? </span>
+              <span style={{textDecoration:'underline',cursor:"pointer"}} onClick={openLoginForm} >Sign In</span>
+            </div>
           </div>
         </div>
       )}
@@ -319,14 +318,14 @@ function Navbar() {
         </div>
       </div>
     )}
-     {showRegisterSuccessPopup && (
+    {showRegisterSuccessPopup && (
       <div className="success-popup-overlay" onClick={closeRegisterPopups}>
         <div className="success-popup">
           <p>Đăng ký thành công!</p>
         </div>
       </div>
     )}
-     {showRegisterErrorPopup && (
+    {showRegisterErrorPopup && (
       <div className="error-popup-overlay" onClick={closeRegisterPopups}>
         <div className="error-popup">
           <p>Đăng ký thất bại. </p>

@@ -49,7 +49,9 @@ function FoodDetail() {
             <p>Fat: {food.Fat}</p>
           </div>
         </div>
-        <p>Instruction: {food.Instruction}</p>
+        <div className='ing-info'>
+          <span style={{fontWeight:'bold'}}> Instruction:</span> <span>{food.Instruction}</span>
+        </div>
         <h3>Ingredients:</h3>
         <ul>
           {foodDetail.map((value, index) => 

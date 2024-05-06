@@ -21,6 +21,9 @@ const foodDetailRouter = require('./routes/FoodDetail');
 app.use("/FoodDetail", foodDetailRouter);
 const foodRouter = require('./routes/Food');
 app.use("/Food", foodRouter);
+const postRouter = require("./routes/Posts");
+app.use("/posts", postRouter);
+
 const foodTypeRouter = require('./routes/FoodIngre');
 app.use("/FoodIngre", foodTypeRouter);
 

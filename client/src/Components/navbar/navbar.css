@@ -75,9 +75,9 @@
   transform: scale(1.1);
 }
 
+
 .sorted-food-filter {
   position: absolute;
-
   top: calc(8% + 10px);
   margin-left: 73%;
   /* top: calc(6% + 10px);
@@ -90,13 +90,13 @@
   border-radius: 20px;
 }
 
-
+/* 
 @media only screen and (max-width: 2560px) and (max-height: 1600px)  {
   .sorted-food-filter{
     top: calc(6% + 10px);
     margin-left:  67%;
   }
-}
+} */
 
 
 .sorted-food-filter.show {
@@ -114,74 +114,164 @@
   border-radius: 20px;
 }
 
-
-/* loginpart */
-
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* semi-transparent background */
-  z-index: 999; /* ensure the overlay is on top of other content */
+  background-color: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(8px); 
+  z-index: 1000; 
 }
 
-.login-form-container{
+.login-form-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white; 
+  background-color: #ffffff;
   padding: 40px;
   border-radius: 20px;
-  z-index: 1000; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-  height: 300px;
-  z-index: 999;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
-/* Inside your Navbar.css file */
 
+.login-form-container h2 {
+  margin-bottom: 20px;
+  color: #333333;
+}
 
 .form-group {
+  position: relative;
+  margin-bottom: 20px;
+  width: 100%;
+  margin-left: -10px;
 }
 
 .form-group label {
-
+  display: block;
+  margin-bottom: 5px;
+  color: #333333;
 }
 
 .form-group input {
-
-}
-
-.login-button{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 16px;
   
 }
-/**/
 
+.error-message {
+  color: #ff0000;
+  top: 0;
+  right: 0;
+  position: absolute;
+  margin-right: -20px;
+  margin-top: 10px;
+}
 
+.login-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 1px;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #D3A121;
+}
+
+.login-form-container .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.login-form-container .form-group:last-child button {
+  margin-top: 20px;
+}
+
+.close-button {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333333;
+  transition: color 0.3s;
+}
+
+.close-button:hover {
+  color: #D3A121;
+}
 
 
 .register-form-container {
-  display: flex;
-  flex-direction: row;
   position: fixed;
+  width: 500px; 
+  height: 500px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 40px;
-  border-radius: 20px;
+  background-color: #ffffff;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 50px;
+  padding-bottom: 30px;
+  border-radius: 5%;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  height: auto;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.column {
+  flex: 0 0 45%; 
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.error-message {
+  color: red;
 }
 
 .register-button{
-  
+  width: 300px;
+  margin-left: 100px;
 }
+
 
 
 /* popup status */
@@ -222,5 +312,6 @@
   color: #950D14;
   z-index: 1000;
 }
+
 
 

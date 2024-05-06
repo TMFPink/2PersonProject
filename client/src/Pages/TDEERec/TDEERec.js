@@ -25,11 +25,11 @@ function TDEERec() {
     const supportedImageFormats = ['jpeg', 'jpg', 'png', 'webp'];
     const getImageUrl = (id) => {
         for (const format of supportedImageFormats) {
-          const imageUrl = `/foodpicture/${id}.${format}`;
-          return imageUrl;
+            const imageUrl = `/foodpicture/${id}.${format}`;
+            return imageUrl;
         }
         return '/foodpicture/default.jpg';
-      };
+        };
 
     const calculateTDEE = () => {
         if (parseFloat(height) <= 0 || parseFloat(weight) <= 0 || parseInt(age) <= 0) {
@@ -122,7 +122,7 @@ function TDEERec() {
             {showRecommendation && (
                 <div className="recommendation-popup">
                     <h3>Recommendation:</h3>
-                    <p style={{fontSize:'25px'}} dangerouslySetInnerHTML={{ __html: recommendation }}></p>
+                    <p style={{fontSize:'15px'}} dangerouslySetInnerHTML={{ __html: recommendation }}></p>
                     <div className="food-row">
                         {listoffood
                         .sort((a, b) => {

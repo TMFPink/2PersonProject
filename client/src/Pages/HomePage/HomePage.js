@@ -44,24 +44,6 @@ function homepage() {
         </div>
       </section>
 
-      {/* <section className="meal-plans-section">
-        <div className="section-content">
-          <h2>Meal Plans</h2>
-          <p>Showcase Sample Meal Plans</p>
-          <p>Option to Customize</p>
-          <Link to="/meal-plans" className="cta-button">Explore Meal Plans</Link>
-        </div>
-      </section>
-
-      <section className="caloric-tracking-section">
-        <div className="section-content">
-          <h2>Caloric Tracking</h2>
-          <p>Explain Calorie Tracking</p>
-          <p>Screenshots</p>
-          <Link to="/caloric-tracking" className="cta-button">Learn More</Link>
-        </div>
-      </section> */}
-
       <section className="about-us-section">
         <div className="section-content">
           <h2>About Us</h2>
