@@ -1,11 +1,10 @@
-import React from 'react';
-// import { Link } from 'react-router-dom';
-import './Blog.css';
+
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useState, useEffect } from 'react'; 
+import './Blog.css'; 
 
-
-function blog() {
+function Blog() {
     const [listOfPosts, setListOfPosts] = useState([]);
 
     useEffect(() => {
@@ -27,4 +26,4 @@ function blog() {
     </div>
     );
 }
-export default blog;
+export default Blog;

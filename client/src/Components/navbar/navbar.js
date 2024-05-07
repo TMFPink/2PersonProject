@@ -206,7 +206,8 @@ function Navbar() {
           <Route path="/tdee" exact Component={TDEE} />
           <Route path="/fooddetail/:id" exact Component={FoodDetail} />
           <Route path="/sorted-food/:type" exact Component={SortedFood} />
-          <Route path="/blog" exact Component={Blog}/>
+
+          <Route path="/blog" exact Component={Blog} />
         </Routes>  
       </Router>
       <div className={`scroll-to-top ${isVisible ? 'show' : ''}`} onClick={scrollToTop}>
