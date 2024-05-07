@@ -29,6 +29,8 @@ function Navbar() {
   const [showRegisterSuccessPopup, setShowRegisterSuccessPopup] = useState(false);
   const [showRegisterErrorPopup, setShowRegisterErrorPopup] = useState(false);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const openLoginForm = () => {
     setShowRegisterForm(false);
     setShowLoginForm(true);
@@ -87,6 +89,7 @@ function Navbar() {
           closeRegisterForm();
           setShowLoginSuccessPopup(true);
           setUser(response.data.user);
+          setIsLoggedIn(true);
         } else {
           // closeLoginForm();
           // closeRegisterForm();
@@ -117,6 +120,7 @@ function Navbar() {
 
   const handleLogout = () => {
     setUser(null);
+    setIsLoggedIn(false);
   };
 
   const scrollToTop = () => {
@@ -165,7 +169,7 @@ function Navbar() {
               <Link to="/" className='navbutt'> HOME</Link>
               <Link to="/tdee" className='navbutt'>CALCULATE TDEE</Link> 
               <Link to="/food" className='navbutt' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>MEAL LIST</Link>
-              <Link to="/blog" className='navbutt'>BLOG</Link>
+              <Link to="/posts" className='navbutt'>BLOG</Link>
               {/* <Link to="/account" className='navbutt'>ACCOUNT</Link> */}
               {user ? (
                 <div  className='navbutt'>
@@ -206,7 +210,8 @@ function Navbar() {
           <Route path="/tdee" exact Component={TDEE} />
           <Route path="/fooddetail/:id" exact Component={FoodDetail} />
           <Route path="/sorted-food/:type" exact Component={SortedFood} />
-          <Route path="/blog" exact Component={Blog} />
+
+          <Route path="/posts" element={<Blog user={user} isLoggedIn={isLoggedIn} openLoginForm={openLoginForm}/>} />
         </Routes>  
       </Router>
       <div className={`scroll-to-top ${isVisible ? 'show' : ''}`} onClick={scrollToTop}>
@@ -294,13 +299,15 @@ function Navbar() {
                       <ErrorMessage name='Address' component='div' className='error-message' />
                     </div>
                   </div>
-                </Form>
-            </Formik>
-            <button type='submit' className='register-button'>Sign Up</button>
+                  <button type='submit' className='register-button'>Sign Up</button>
             <div style={{display:'flex',flexDirection:'row',paddingTop:'20px'}}>
               <span style={{paddingRight:'5px'}}>Already have an account? </span>
               <span style={{textDecoration:'underline',cursor:"pointer"}} onClick={openLoginForm} >Sign In</span>
             </div>
+           
+                </Form>
+            </Formik>
+            
           </div>
         </div>
       )}
@@ -308,30 +315,30 @@ function Navbar() {
       <div className="success-popup-overlay" onClick={closeLoginPopups}>
         
         <div className="success-popup">         
-            <p>Đăng nhập thành công!</p>
+            <p>Login Successfully!</p>
         </div>
       </div>
     )}
       {showLoginErrorPopup && (
       <div className="error-popup-overlay" onClick={closeLoginPopups}>
         <div className="error-popup">
-          <p>Đăng nhập thất bại. </p>
-          <p>Vui lòng kiểm tra lại thông tin đăng nhập.</p>
+          <p>Login failed. </p>
+          <p>Please check your login information.</p>
         </div>
       </div>
     )}
     {showRegisterSuccessPopup && (
       <div className="success-popup-overlay" onClick={closeRegisterPopups}>
         <div className="success-popup">
-          <p>Đăng ký thành công!</p>
+          <p>Register Successfully!</p>
         </div>
       </div>
     )}
     {showRegisterErrorPopup && (
       <div className="error-popup-overlay" onClick={closeRegisterPopups}>
         <div className="error-popup">
-          <p>Đăng ký thất bại. </p>
-          <p>Vui lòng thử lại sau.</p>
+          <p>Register failed. </p>
+          <p>Please check your information again.</p>
         </div>
       </div>
     )}
