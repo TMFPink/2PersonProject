@@ -165,7 +165,7 @@ function Navbar() {
               <Link to="/" className='navbutt'> HOME</Link>
               <Link to="/tdee" className='navbutt'>CALCULATE TDEE</Link> 
               <Link to="/food" className='navbutt' onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>MEAL LIST</Link>
-              <Link to="/blog" className='navbutt'>BLOG</Link>
+              <Link to="/posts" className='navbutt'>BLOG</Link>
               {/* <Link to="/account" className='navbutt'>ACCOUNT</Link> */}
               {user ? (
                 <div  className='navbutt'>
@@ -206,7 +206,7 @@ function Navbar() {
           <Route path="/tdee" exact Component={TDEE} />
           <Route path="/fooddetail/:id" exact Component={FoodDetail} />
           <Route path="/sorted-food/:type" exact Component={SortedFood} />
-          <Route path="/blog" exact Component={Blog} />
+          <Route path="/posts" exact Component={Blog} />
         </Routes>  
       </Router>
       <div className={`scroll-to-top ${isVisible ? 'show' : ''}`} onClick={scrollToTop}>
