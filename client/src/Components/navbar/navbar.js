@@ -3,6 +3,7 @@ import Food from '../../Pages/MealList/MealList';
 import Home from '../../Pages/HomePage/HomePage';
 import CreateFood from '../../Pages/CreateFood/CreateFood';
 import TDEE from '../../Pages/TDEERec/TDEERec';
+import Blog from '../../Pages/Blog/Blog';
 import FoodDetail from '../../Components/fooddetail/FoodDetail';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import './navbar.css'
@@ -205,6 +206,7 @@ function Navbar() {
           <Route path="/tdee" exact Component={TDEE} />
           <Route path="/fooddetail/:id" exact Component={FoodDetail} />
           <Route path="/sorted-food/:type" exact Component={SortedFood} />
+          <Route path="/blog" exact Component={Blog}/>
         </Routes>  
       </Router>
       <div className={`scroll-to-top ${isVisible ? 'show' : ''}`} onClick={scrollToTop}>
@@ -292,13 +294,15 @@ function Navbar() {
                       <ErrorMessage name='Address' component='div' className='error-message' />
                     </div>
                   </div>
-                </Form>
-            </Formik>
-            <button type='submit' className='register-button'>Sign Up</button>
+                  <button type='submit' className='register-button'>Sign Up</button>
             <div style={{display:'flex',flexDirection:'row',paddingTop:'20px'}}>
               <span style={{paddingRight:'5px'}}>Already have an account? </span>
               <span style={{textDecoration:'underline',cursor:"pointer"}} onClick={openLoginForm} >Sign In</span>
             </div>
+           
+                </Form>
+            </Formik>
+            
           </div>
         </div>
       )}
@@ -306,30 +310,30 @@ function Navbar() {
       <div className="success-popup-overlay" onClick={closeLoginPopups}>
         
         <div className="success-popup">         
-            <p>Đăng nhập thành công!</p>
+            <p>Login Successfully!</p>
         </div>
       </div>
     )}
       {showLoginErrorPopup && (
       <div className="error-popup-overlay" onClick={closeLoginPopups}>
         <div className="error-popup">
-          <p>Đăng nhập thất bại. </p>
-          <p>Vui lòng kiểm tra lại thông tin đăng nhập.</p>
+          <p>Login failed. </p>
+          <p>Please check your login information.</p>
         </div>
       </div>
     )}
     {showRegisterSuccessPopup && (
       <div className="success-popup-overlay" onClick={closeRegisterPopups}>
         <div className="success-popup">
-          <p>Đăng ký thành công!</p>
+          <p>Register Successfully!</p>
         </div>
       </div>
     )}
     {showRegisterErrorPopup && (
       <div className="error-popup-overlay" onClick={closeRegisterPopups}>
         <div className="error-popup">
-          <p>Đăng ký thất bại. </p>
-          <p>Vui lòng thử lại sau.</p>
+          <p>Register failed. </p>
+          <p>Please check your information again.</p>
         </div>
       </div>
     )}

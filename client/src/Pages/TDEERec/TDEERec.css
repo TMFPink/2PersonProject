@@ -1,6 +1,6 @@
 .TDEE-container {
-  background-image: url('C:\Users\user\2PersonProject\client\src\Asset\tdee\tdee-background.jpg');
-  /* background-image: url('/Users/nguyenhong/Documents/FymAndGoodProject/client/src/Asset/tdee/tdee-background.jpg'); */
+  /* background-image: url('C:\Users\user\2PersonProject\client\src\Asset\tdee\tdee-background.jpg'); */
+  background-image: url('/Users/nguyenhong/Documents/FymAndGoodProject/client/src/Asset/tdee/tdee-background.jpg');
   background-size: cover;
   /* background-attachment: fixed; */
   position: relative;
@@ -15,6 +15,7 @@
   backdrop-filter: blur(8px); 
   z-index: 1000; 
 }
+
 
 .container {
   max-width: 400px;
