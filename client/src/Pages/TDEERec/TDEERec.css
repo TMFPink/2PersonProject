@@ -175,9 +175,12 @@ button:hover {
   text-align: center;
   height: auto;
   z-index: 9999;
+  height: auto;
 }
 
+
 .TDEE-container .error-popup p {
+
   margin: 0;
   font-size: 16px;
   line-height: 1.5;
