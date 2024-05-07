@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function Food() {
   const [listoffood, setListoffood] = useState([]);
   const [foodingredient, setfoodingredient] = useState([]);
+  const [sortOrder, setSortOrder] = useState('asc');
   const [filteredFood, setFilteredFood] = useState({
     MeatAndProtein: false,
     Vegetables: false,
@@ -38,6 +39,8 @@ useEffect(() => {
   fetchData();
 }, []);
 
+
+  //image part
   const supportedImageFormats = ['jpeg', 'jpg', 'png', 'webp'];
   const getImageUrl = (id) => {
     for (const format of supportedImageFormats) {
@@ -47,6 +50,42 @@ useEffect(() => {
     return '/foodpicture/default.jpg';
   };
 
+  // Sort food list based on calories
+  const sortFoodByCalories = () => {
+    const sortedFood = [...listoffood].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.Calories - b.Calories;
+      } else {
+        return b.Calories - a.Calories;
+      }
+    });
+    setListoffood(sortedFood);
+  };
+  // Function to handle sorting in ascending order
+  const sortAscending = () => {
+    setSortOrder('asc');
+    sortFoodByCalories();
+  };
+
+  // Function to handle sorting in descending order
+  const sortDescending = () => {
+    setSortOrder('desc');
+    sortFoodByCalories();
+  };
+  useEffect(() => {
+    sortFoodByCalories();
+  }, [sortOrder]);
+
+
+  //DROP DOWN PART
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [showFilterDropdown, setShowFilterDropdown] = useState(false);
+  const toggleSortDropdown = () => {
+    setShowSortDropdown(!showSortDropdown);
+  };
+  const toggleFilterDropdown = () => {
+    setShowFilterDropdown(!showFilterDropdown);
+  };
 
   const linkFoodWithIngredients = () => {
     const linkedFood = listoffood.map(food => {
@@ -153,7 +192,14 @@ useEffect(() => {
                 ))}
             </div>
         )}
-        <div className="filterlist">
+        {/* Filter button */}
+        <button onClick={toggleFilterDropdown}>
+          Filter
+        </button>
+        {/* Filter dropdown */}
+        {showFilterDropdown && (
+          <div className="filter-dropdown">
+            <div className="filterlist">
             <div className='filtercontent'>
                 <span className={filteredFood.MeatAndProtein ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('MeatAndProtein')}>MeatAndProtein</span>
                 <span className={filteredFood.Vegetables ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('Vegetables')}>Vegetables</span>
@@ -166,6 +212,18 @@ useEffect(() => {
         
             </div>
         </div>
+          </div>
+        )}
+        
+        <button onClick={toggleSortDropdown}>
+          Sort
+        </button>
+        {showSortDropdown && (
+          <div className="sort-dropdown">
+            <button onClick={() => setSortOrder('asc')}>Sort by Calories (Ascending)</button>
+            <button onClick={() => setSortOrder('desc')}>Sort by Calories (Descending)</button>
+          </div>
+        )}
     </div>
       <h2 className="section-title">Meal List</h2>
       <div className="card-container">
