@@ -3,6 +3,7 @@ import Food from '../../Pages/MealList/MealList';
 import Home from '../../Pages/HomePage/HomePage';
 import CreateFood from '../../Pages/CreateFood/CreateFood';
 import TDEE from '../../Pages/TDEERec/TDEERec';
+import Blog from '../../Pages/Blog/Blog';
 import FoodDetail from '../../Components/fooddetail/FoodDetail';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import './navbar.css'
@@ -205,6 +206,7 @@ function Navbar() {
           <Route path="/tdee" exact Component={TDEE} />
           <Route path="/fooddetail/:id" exact Component={FoodDetail} />
           <Route path="/sorted-food/:type" exact Component={SortedFood} />
+          <Route path="/blog" exact Component={Blog} />
         </Routes>  
       </Router>
       <div className={`scroll-to-top ${isVisible ? 'show' : ''}`} onClick={scrollToTop}>
