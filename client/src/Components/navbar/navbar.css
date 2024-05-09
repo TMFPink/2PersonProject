@@ -90,13 +90,13 @@
   border-radius: 20px;
 }
 
-/* 
+
 @media only screen and (max-width: 2560px) and (max-height: 1600px)  {
   .sorted-food-filter{
     top: calc(6% + 10px);
     margin-left:  67%;
   }
-} */
+}
 
 
 .sorted-food-filter.show {

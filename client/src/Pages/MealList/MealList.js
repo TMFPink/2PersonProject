@@ -7,9 +7,13 @@ import carbIcon from '../../Asset/meallist/carb.png';
 import fatIcon from '../../Asset/meallist/fat.png';
 import caloriesIcon from '../../Asset/meallist/calories.png';
 import { useNavigate } from 'react-router-dom';
+import arrowdownIcon from '../../Asset/meallist/arrowdown.png'
+import filterIcon from '../../Asset/meallist/filter.png'
+
 function Food() {
   const [listoffood, setListoffood] = useState([]);
   const [foodingredient, setfoodingredient] = useState([]);
+  const [sortOrder, setSortOrder] = useState('asc');
   const [filteredFood, setFilteredFood] = useState({
     MeatAndProtein: false,
     Vegetables: false,
@@ -38,6 +42,8 @@ useEffect(() => {
   fetchData();
 }, []);
 
+
+  //image part
   const supportedImageFormats = ['jpeg', 'jpg', 'png', 'webp'];
   const getImageUrl = (id) => {
     for (const format of supportedImageFormats) {
@@ -47,6 +53,42 @@ useEffect(() => {
     return '/foodpicture/default.jpg';
   };
 
+  // Sort food list based on calories
+  const sortFoodByCalories = () => {
+    const sortedFood = [...listoffood].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.Calories - b.Calories;
+      } else {
+        return b.Calories - a.Calories;
+      }
+    });
+    setListoffood(sortedFood);
+  };
+  // Function to handle sorting in ascending order
+  const sortAscending = () => {
+    setSortOrder('asc');
+    sortFoodByCalories();
+  };
+
+  // Function to handle sorting in descending order
+  const sortDescending = () => {
+    setSortOrder('desc');
+    sortFoodByCalories();
+  };
+  useEffect(() => {
+    sortFoodByCalories();
+  }, [sortOrder]);
+
+
+  //DROP DOWN PART
+  const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [showFilterDropdown, setShowFilterDropdown] = useState(false);
+  const toggleSortDropdown = () => {
+    setShowSortDropdown(!showSortDropdown);
+  };
+  const toggleFilterDropdown = () => {
+    setShowFilterDropdown(!showFilterDropdown);
+  };
 
   const linkFoodWithIngredients = () => {
     const linkedFood = listoffood.map(food => {
@@ -123,17 +165,22 @@ useEffect(() => {
 
   return (
     <div className="meal-list-container">
+
       <div className="SearchBox">
-        <input
-            type="text"
-            className="SearchContainer"
-            placeholder="Tìm kiếm"
-            value={searchQuery}
-            onChange={(e) => {
-                setSearchQuery(e.target.value);
-                handleSearch(e.target.value);
-            }}/>
-        
+        <div className="SearchInput">
+
+            <input
+                type="text"
+                className="SearchContainer"
+                placeholder="Search"
+                value={searchQuery}
+                onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    handleSearch(e.target.value);
+                }}
+            />
+        </div>
+    
         
         {/* Search results dropdown */}
         {searchQuery && (
@@ -147,27 +194,63 @@ useEffect(() => {
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                         }}
                     >
-                        <img src={getImageUrl(result.id)} alt="book" className="BookThumbnail" />
-                        <div className="BookTitle_Search">{result.FoodName}</div>
+                        <img src={getImageUrl(result.id)} alt="food" className="FoodThumbnail" />
+                        <div className="FoodTitle_Search">{result.FoodName}</div>
                     </div>
                 ))}
             </div>
         )}
-        <div className="filterlist">
-            <div className='filtercontent'>
-                <span className={filteredFood.MeatAndProtein ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('MeatAndProtein')}>MeatAndProtein</span>
-                <span className={filteredFood.Vegetables ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('Vegetables')}>Vegetables</span>
-                <span className={filteredFood.Fruits ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('Fruits')}>Fruits</span>
-                <span className={filteredFood.DairyAndCheese ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('DairyAndCheese')}>DairyAndCheese</span>
-                <span className={filteredFood.GrainAndCarbs ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('GrainAndCarbs')}>GrainsAndCarbs</span>
-                <span className={filteredFood.SaucesOilCondiments ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('SaucesOilCondiments')}>SaucesOilCondiments</span>
-                <span className={filteredFood.HerbAndSpices ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('HerbAndSpices')}>HerbsAndSpices</span>
-                <span className={filteredFood.Miscellaneous ? 'filter-button active' : 'filter-button'} onClick={() => toggleFilter('Miscellaneous')}>Miscellaneous</span>
+    </div>
+
+
+      <h2 className="section-title">Meal List</h2>
+      <span style={{fontSize:'15px',color:'white',textAlign:'center'}}>Welcome to our Meal List! Just like choosing the perfect outfit to match your style, here you can select from a variety of nutritious meals tailored to your preferences. Whether you're looking for a hearty protein-packed dish or a light and refreshing salad, we've got you covered. Explore our selection of meals, each crafted with high-quality ingredients to fuel your body and support your fitness goals. From savory main courses to delicious snacks, our meal options cater to every taste and dietary need. Dive in and discover a world of culinary delights that will keep you energized and satisfied throughout your fitness journey. Bon appétit!</span>
+      <div className='button-container'>
+
+      <button onClick={toggleSortDropdown}>
+        <span>Sort</span>
+        <img src={arrowdownIcon} alt="Arrow down" className="arrow-icon" />
+      </button>
         
+      {showSortDropdown && (
+          <div className="sort-dropdown">
+              <button onClick={() => { setSortOrder('asc'); setShowSortDropdown(false); }}>Sort by Calories (Ascending)</button>
+              <button onClick={() => { setSortOrder('desc'); setShowSortDropdown(false); }}>Sort by Calories (Descending)</button>
+          </div>
+      )}
+
+      <div style={{ marginRight: '20px' }}></div>
+      {/* Filter button */}
+      <button onClick={toggleFilterDropdown}>
+          <img src={filterIcon} alt="Filter" className="filter-icon" />
+          <span>Filter</span>
+        </button>
+        {/* Filter dropdown */}
+        {showFilterDropdown && (
+        <div className="filter-dropdown">
+            <div className="filterlist">
+                <div className='filtercontent'>
+                    <span className={filteredFood.MeatAndProtein ? 'filter-button active' : 'filter-button'} onClick={() => { toggleFilter('MeatAndProtein')}}>MeatAndProtein</span>
+                    <span className="divider"></span>
+                    <span className={filteredFood.Vegetables ? 'filter-button active' : 'filter-button'} onClick={() => { toggleFilter('Vegetables')}}>Vegetables</span>
+                    <span className="divider"></span>
+                    <span className={filteredFood.Fruits ? 'filter-button active' : 'filter-button'} onClick={() => { toggleFilter('Fruits')}}>Fruits</span>
+                    <span className="divider"></span>
+                    <span className={filteredFood.DairyAndCheese ? 'filter-button active' : 'filter-button'} onClick={() => { toggleFilter('DairyAndCheese')}}>DairyAndCheese</span>
+                    <span className="divider"></span>
+                    <span className={filteredFood.GrainAndCarbs ? 'filter-button active' : 'filter-button'} onClick={() => { toggleFilter('GrainAndCarbs')}}>GrainsAndCarbs</span>
+                    <span className="divider"></span>
+                    <span className={filteredFood.SaucesOilCondiments ? 'filter-button active' : 'filter-button'} onClick={() => { toggleFilter('SaucesOilCondiments'); setShowFilterDropdown(false); }}>SaucesOilCondiments</span>
+                    <span className="divider"></span>
+                    <span className={filteredFood.HerbAndSpices ? 'filter-button active' : 'filter-button'} onClick={() => { toggleFilter('HerbAndSpices')}}>HerbsAndSpices</span>
+                    <span className="divider"></span>
+                    <span className={filteredFood.Miscellaneous ? 'filter-button active' : 'filter-button'} onClick={() => { toggleFilter('Miscellaneous')}}>Miscellaneous</span>
+                </div>
             </div>
         </div>
+    )}   
     </div>
-      <h2 className="section-title">Meal List</h2>
+
       <div className="card-container">
         {getFilteredFood().map((value, key) => (
           <div className="food-card" key={key}>

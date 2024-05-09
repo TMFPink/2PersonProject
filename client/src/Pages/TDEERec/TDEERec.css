@@ -16,6 +16,7 @@
   z-index: 1000; 
 }
 
+
 .container {
   max-width: 400px;
   margin: 0 auto;
@@ -119,7 +120,7 @@ select {
   transform: translateY(20%);
 }
 
-button {
+.TDEE-container button {
   display: block;
   width: 100%;
   padding: 12px;
@@ -133,7 +134,7 @@ button {
   margin-top: 15px;
 }
 
-button:hover {
+.TDEE-container button:hover {
   background-color: #D3A121;
 }
 
