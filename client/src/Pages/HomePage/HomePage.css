@@ -24,8 +24,8 @@ a:hover {
 
 /* Hero Section */
 .hero-section {
-  background-image: url('/Users/nguyenhong/Documents/FymAndGoodProject/client/src/Asset/homepage/healthy.jpg'); 
-  /* background-image: url('C:\Users\user\2PersonProject\client\src\Asset\homepage\healthy.jpg');  */
+  /* background-image: url('/Users/nguyenhong/Documents/FymAndGoodProject/client/src/Asset/homepage/healthy.jpg');  */
+  background-image: url('C:\Users\user\2PersonProject\client\src\Asset\homepage\healthy.jpg'); 
   background-position: center; 
   background-size: cover;
   padding: 200px 0;

@@ -210,7 +210,6 @@ function Navbar() {
           <Route path="/tdee" exact Component={TDEE} />
           <Route path="/fooddetail/:id" exact Component={FoodDetail} />
           <Route path="/sorted-food/:type" exact Component={SortedFood} />
-
           <Route path="/posts" element={<Blog user={user} isLoggedIn={isLoggedIn} openLoginForm={openLoginForm}/>} />
         </Routes>  
       </Router>
@@ -298,13 +297,15 @@ function Navbar() {
                       <Field type='text' id='Address' name='Address' />
                       <ErrorMessage name='Address' component='div' className='error-message' />
                     </div>
+                    <div classsname='register-container'>
+                    <button type='submit' className='register-button'>Sign Up</button>
+                    <div style={{display:'flex',flexDirection:'row',paddingTop:'20px'}}>
+                      <span style={{paddingRight:'5px'}}>Already have an account? </span>
+                      <span style={{textDecoration:'underline',cursor:"pointer"}} onClick={openLoginForm} >Sign In</span>
+                    </div>
                   </div>
-                  <button type='submit' className='register-button'>Sign Up</button>
-            <div style={{display:'flex',flexDirection:'row',paddingTop:'20px'}}>
-              <span style={{paddingRight:'5px'}}>Already have an account? </span>
-              <span style={{textDecoration:'underline',cursor:"pointer"}} onClick={openLoginForm} >Sign In</span>
-            </div>
-           
+                  </div>
+            
                 </Form>
             </Formik>
             
