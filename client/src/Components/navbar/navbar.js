@@ -64,7 +64,7 @@ function Navbar() {
   // validation schema
   const loginSchema = Yup.object().shape({
     Mail: Yup.string().required('*'),
-    Password: Yup.string().min(6).required('*'),
+    Password: Yup.string().required('*'),
   });
 
   const registerSchema = Yup.object().shape({
@@ -174,7 +174,7 @@ function Navbar() {
               {user ? (
                 <div  className='navbutt'>
                   <span>HI, </span>
-                  <span style={{textTransform:'uppercase'}}>{user.Name}</span>
+                  <span style={{textTransform:'uppercase'}}>{user.Name.split(' ').slice(-1).join(' ')}</span>
                 </div>
               ) : (
                 <div to="/account" className='navbutt' style={{cursor:'pointer'}} onClick={openLoginForm}>
@@ -258,8 +258,11 @@ function Navbar() {
             <div  className='close-button' onClick={closeRegisterForm} alt='clostform'>&#10006;</div>
             <h2>Create new account</h2>
             <Formik initialValues={{ Name: '', Mail: '', Phone: '', DOB: '', Password: '', Address: '', confirmPassword: ''}} validationSchema={registerSchema} onSubmit={handleRegisterSubmit}>
-                <Form className='register-form'>
-                  <div className='column'>
+                <Form className='register-form' style={{display:'flex',flexDirection:'column'}}>
+                  <div style={{display:'flex'}}>
+
+                  
+                  <div className='column' style={{marginLeft:'10px'}}>
                     <div className='form-group'>
                       <label htmlFor='Name'>Name</label>
                       <Field type='text' id='Name' name='Name' />
@@ -297,15 +300,24 @@ function Navbar() {
                       <Field type='text' id='Address' name='Address' />
                       <ErrorMessage name='Address' component='div' className='error-message' />
                     </div>
-                    <div classsname='register-container'>
+
+                  
+        
+
+
+                  </div>
+
+                  </div>
+
+                  <div classsname='register-container'>
                     <button type='submit' className='register-button'>Sign Up</button>
                     <div style={{display:'flex',flexDirection:'row',paddingTop:'20px'}}>
                       <span style={{paddingRight:'5px'}}>Already have an account? </span>
                       <span style={{textDecoration:'underline',cursor:"pointer"}} onClick={openLoginForm} >Sign In</span>
                     </div>
                   </div>
-                  </div>
-            
+                  
+                  
                 </Form>
             </Formik>
             

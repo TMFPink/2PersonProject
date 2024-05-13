@@ -195,7 +195,7 @@ useEffect(() => {
                         }}
                     >
                         <img src={getImageUrl(result.id)} alt="food" className="FoodThumbnail" />
-                        <div className="FoodTitle_Search">{result.FoodName}</div>
+                        <div className="FoodTitle_Search">{result.FoodName.length > 20 ? result.FoodName.substring(0, 20) + '...' : result.FoodName}</div>
                     </div>
                 ))}
             </div>

@@ -1,6 +1,6 @@
 .TDEE-container {
-  background-image: url('C:\Users\user\2PersonProject\client\src\Asset\tdee\tdee-background.jpg');
-  /* background-image: url('/Users/nguyenhong/Documents/FymAndGoodProject/client/src/Asset/tdee/tdee-background.jpg'); */
+  /* background-image: url('C:\Users\user\2PersonProject\client\src\Asset\tdee\tdee-background.jpg'); */
+  background-image: url('/Users/nguyenhong/Documents/FymAndGoodProject/client/src/Asset/tdee/tdee-background.jpg');
   background-size: cover;
   /* background-attachment: fixed; */
   position: relative;
@@ -213,8 +213,8 @@ select {
   color: #000000;
   text-align: center;
   z-index: 9999;
-  width: 700px;
-  height: 500px;
+  width: 720px; /*khang 700px,Hong720px*/
+  height: 520px; /*khang 500px,Hong 520px*/
 }
 
 
@@ -284,7 +284,7 @@ select {
 
 .TDEE-container .food-card {
   margin: 0 10px;
-  height: 250px;
+  height: auto; /*khang: 250px,Hong auto*/
 }
 
 .TDEE-container .food-name {
