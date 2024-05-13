@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: false,
     },
     postText: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
     },
     username: {
@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 },{
     
     timestamps: false
+    
 })
 
 return Posts;

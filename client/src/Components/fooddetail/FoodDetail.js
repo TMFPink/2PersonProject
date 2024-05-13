@@ -29,38 +29,43 @@ function FoodDetail() {
 
   return (
     <div className='food-detail-container1'>
-      <div className="food-detail-container">
-          <h2>{food.FoodName}</h2>
-          <div className="info-item">
-          <div className="info-item">
-            <img className="nutrition-icon2" src={caloriesIcon} alt="Calories" />
-            <p>Calories: {food.Calories}</p>
+      <div className='maincontainer'>
+        <img src={`/foodpicture/${food.id}.jpeg`} className='fooddetail_img' ></img>
+        <div className="food-detail-container">
+            <h2>{food.FoodName}</h2>
+            <div className="info-item">
+            <div className="info-item">
+              <img className="nutrition-icon2" src={caloriesIcon} alt="Calories" />
+              <p>Calories: {food.Calories}</p>
+            </div>
+            <div className="info-item">
+              <img className="nutrition-icon2" src={proteinIcon} alt="Protein" />
+              <p>Protein: {food.Protein}</p>
+            </div>
+            <div className="info-item">
+              <img className="nutrition-icon2" src={carbIcon} alt="Carb" />
+              <p>Carb: {food.Carb}</p>
+            </div>
+            <div className="info-item">
+              <img className="nutrition-icon2" src={fatIcon} alt="Fat" />
+              <p>Fat: {food.Fat}</p>
+            </div>
           </div>
-          <div className="info-item">
-            <img className="nutrition-icon2" src={proteinIcon} alt="Protein" />
-            <p>Protein: {food.Protein}</p>
+          <div className='ing-info'>
+            <span style={{fontWeight:'bold'}}> Instruction:</span> <span>{food.Instruction}</span>
           </div>
-          <div className="info-item">
-            <img className="nutrition-icon2" src={carbIcon} alt="Carb" />
-            <p>Carb: {food.Carb}</p>
-          </div>
-          <div className="info-item">
-            <img className="nutrition-icon2" src={fatIcon} alt="Fat" />
-            <p>Fat: {food.Fat}</p>
-          </div>
+          <h3>Ingredients:</h3>
+          <ul>
+            {foodDetail.map((value, index) => 
+              <li key={index}>
+                <span>{value.Ingredient}: {value.IngreAmount}</span>
+              </li>
+            )}
+          </ul>
         </div>
-        <div className='ing-info'>
-          <span style={{fontWeight:'bold'}}> Instruction:</span> <span>{food.Instruction}</span>
-        </div>
-        <h3>Ingredients:</h3>
-        <ul>
-          {foodDetail.map((value, index) => 
-            <li key={index}>
-              <span>{value.Ingredient}: {value.IngreAmount}</span>
-            </li>
-          )}
-        </ul>
+
       </div>
+      
       <footer className="footer-section">
         <div className="footer-content">
           <ul>

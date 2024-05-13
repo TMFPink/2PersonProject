@@ -1,6 +1,7 @@
 .meal-list-container {
     background-color: #1D1D1D;
     padding-top: 10px;
+    padding: 20px; /*khang khong co,Hong 20px*/
 }
 
 .section-title {
@@ -133,12 +134,12 @@
 
 .SearchInput {
     position: absolute;
-    left: 1000px;
+    left: 1130px;
     margin-top: 80px;
 }
 
 .SearchContainer {
-    width: 200px;
+    width: 230px;
     padding: 10px;
     height: 20px; 
     font-size: 16px;
@@ -184,10 +185,9 @@
 .SearchResults {
     position: absolute;
     top: 70px; 
-    left: 840px;
-    width: 30%;
+    left: 1030px; /*khang 840px*/
+    width: 350px; /*khang 30%*/
     background-color: white;
-    border: 1px solid #ccc;
     border-top: none; 
     z-index: 1000; 
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -218,6 +218,10 @@
     color: black;
     font-size: large;    
     font-weight: bold;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 
@@ -261,7 +265,7 @@
 
 .sort-dropdown{
     position: absolute;
-    top: 330px; 
+    top: 320px; /* Khang drop down top 345px,Hong 320px */
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -273,7 +277,7 @@
 
 .filter-dropdown {
     position: absolute;
-    top: 330px; 
+    top: 320px; 
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -300,4 +304,5 @@
 .filter-dropdown span:hover {
     background-color: #f5f5f5;
 }
+
 
